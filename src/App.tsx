@@ -1,16 +1,16 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Pod from './pages/Pod';
-import './App.css';
+import { MainLayout } from 'components/layout';
+import Collections from 'pages/collections';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="App">
-        <Pod />
-      </div>
+      <MainLayout>
+        <Collections />
+      </MainLayout>
     </QueryClientProvider>
   );
 }

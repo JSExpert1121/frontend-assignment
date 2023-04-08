@@ -1,14 +1,13 @@
-import React from 'react';
 import { useQuery } from 'react-query';
 
-function Collection() {
+export function Collections() {
 
     // Fetch collection data (response will be mocked)
-    const fetchCollection = async () => {
-        const res = await fetch('http://mock-server/collection/test');
+    const fetchCollections = async () => {
+        const res = await fetch('http://mock-server/collections');
         return res.json();
     };
-    const collection = useQuery('collection', fetchCollection);
+    const collection = useQuery('collections', fetchCollections);
 
     // Collection data will be accessible 
     // here, using the mock server.
@@ -19,10 +18,8 @@ function Collection() {
     console.log('#############');
 
     return (
-        <p>
-            {`<Collection page here />`}
-        </p>
+        <section className='container container-md'>
+            Collections page
+        </section>
     );
 }
-
-export default Collection;

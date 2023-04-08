@@ -1,0 +1,24 @@
+@use "../../assets/styles/styles";
+@import "../../assets/styles/variables";
+
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: $background-color;
+    color: $text-color;
+
+    & > header {
+        @extend %flex-center;
+        height: 64px;
+    }
+
+    & > footer {
+        @extend %flex-center;
+        height: 64px;
+    }
+
+    & > main {
+        flex-grow: 1;
+    }
+}
