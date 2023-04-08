@@ -1,0 +1,17 @@
+.text-field {
+    font-weight: normal;
+    &.heavy {
+        font-weight: bold;
+    }
+
+    &.type-h1 { font-size: 48px; }
+    &.type-h2 { font-size: 40px; }
+    &.type-h3 { font-size: 32px; }
+    &.type-h4 { font-size: 24px; }
+    &.type-h5 { font-size: 18px; }
+    &.type-h6 { font-size: 14px; }
+
+    &.type-body-sm { font-size: 12px; }
+    &.type-body-md { font-size: 14px; }
+    &.type-body-lg { font-size: 16px; }
+}
