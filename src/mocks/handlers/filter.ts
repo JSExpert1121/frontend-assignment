@@ -1,4 +1,4 @@
-import { TokenType } from "./types";
+import { TokenType } from 'types';
 
 export type QueryFiltersType = {
     collection: string;
