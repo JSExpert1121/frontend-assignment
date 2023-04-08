@@ -10,7 +10,12 @@
 
     & > header {
         @extend %flex-center;
-        height: 64px;
+        height: 80px;
+        gap: 12px;
+
+        & .icon-btn {
+            background-color: #ffffff19;
+        }
     }
 
     & > footer {
