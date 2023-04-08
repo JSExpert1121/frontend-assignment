@@ -11,8 +11,8 @@ const HEADER_ICONS = [
 export const Header = () => (
     <header>
         {HEADER_ICONS.map((icon) => (
-            <IconButton>
-                <Icon key={icon.id} content={icon.content} />
+            <IconButton key={icon.id}>
+                <Icon content={icon.content} />
             </IconButton>
         ))}
     </header>

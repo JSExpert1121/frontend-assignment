@@ -23,8 +23,8 @@ const IconComponent = ((
         xmlns="http://www.w3.org/2000/svg"
     >
         {typeof content === 'string' && <path d={content} fillRule="evenodd" clipRule="evenodd" />}
-        {Array.isArray(content) && content.map((item: string) => (
-            <path d={item} fillRule="evenodd" clipRule="evenodd" />
+        {Array.isArray(content) && content.map((item: string, idx: number) => (
+            <path key={idx} d={item} fillRule="evenodd" clipRule="evenodd" />
         ))}
     </svg>
 ));
