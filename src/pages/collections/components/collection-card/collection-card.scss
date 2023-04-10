@@ -1,0 +1,30 @@
+.collection-card {
+    display: flex;
+    max-width: 100%;
+
+    & .cover {
+        width: 96px;
+        height: 96px;
+    }
+
+    & .content {
+        max-width: 448px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 16px;
+
+        & .title {
+            margin: 0;
+            margin-bottom: 16px;
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        & .description {
+            font-size: 14px;
+            line-height: 1.2;
+            margin: 0;
+        }
+    }
+}

@@ -33,36 +33,39 @@
 .grid-container {
     display: grid;
     grid-template-columns: 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33%;
-    gap: 8px;
 }
 
 @for $i from 1 through 12 {
+    .grid-item-#{$i} {
+        grid-column: auto / span $i;
+    }
+
     .grid-item-xs-#{$i} {
-        @include xs() {
+        @include xs {
             grid-column: auto / span $i;
         }
     }
 
     .grid-item-sm-#{$i} {
-        @include sm() {
+        @include sm {
             grid-column: auto / span $i;
         }
     }
 
     .grid-item-md-#{$i} {
-        @include md() {
+        @include md {
             grid-column: auto / span $i;
         }
     }
 
     .grid-item-lg-#{$i} {
-        @include lg() {
+        @include lg {
             grid-column: auto / span $i;
         }
     }
 
     .grid-item-xl-#{$i} {
-        @include xl() {
+        @include xl {
             grid-column: auto / span $i;
         }
     }
