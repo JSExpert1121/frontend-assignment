@@ -17,6 +17,7 @@
     & .stats {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 12px;
         width: fit-content;
     }
@@ -30,7 +31,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        margin: 8px 0;
+        margin: 16px 0;
 
         & > h3 {
             color: white;
@@ -43,6 +44,24 @@
             width: 320px;
             max-width: 100%;
             background-color: #ffffff0c;
+        }
+    }
+
+    & .action-bar {
+        margin: 16px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        & .left-buttons, & .right-buttons {
+            display: flex;
+            gap: 12px;
+
+            & > button {
+                border-radius: 16px;
+                padding: 6px 16px;
+            }
         }
     }
 }

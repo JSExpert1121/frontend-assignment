@@ -1,18 +1,18 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, DOMAttributes } from 'react';
 import clsx from 'clsx';
 import { StyledProps } from 'types';
 import './text-field.scss';
 import { Icon } from '../icon';
 import { iconClose, iconSearch } from 'assets/icons';
 
-export type TextFieldProps = StyledProps & {
+export type TextFieldProps = StyledProps & Omit<DOMAttributes<HTMLInputElement>, 'onChange'> & {
     label?: string;
     value: string;
     size?: 'sm' | 'md' | 'lg';
     onChange: ChangeEventHandler<HTMLInputElement>;
     onSearch?: (key: string) => void;
 }
-export const TextField = ({ label, value, onChange, size = 'md', onSearch, className }: TextFieldProps) => {
+export const TextField = ({ label, value, onChange, size = 'md', onSearch, className, ...others }: TextFieldProps) => {
     const element = (
         <input
             type='text'
@@ -23,6 +23,7 @@ export const TextField = ({ label, value, onChange, size = 'md', onSearch, class
                 className
             ])}
             {...{ value, onChange }}
+            {...others}
         />
     )
 
