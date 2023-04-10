@@ -37,9 +37,9 @@ export function Collections() {
     console.log(collections, collectionsFetching, collectionsError);
     return (
         <section className='container container-lg'>
-            <section className='collections-topbar'>
+            <section className='collections-topbar my-4'>
                 <CollectionCard />
-                <section className='stats'>
+                <section className='stats my-4'>
                     <StatCard label='ASSETS' value={10000} />
                     <StatCard label='HOLDERS' value={5257} />
                     <StatCard label='VOLUME' value={98561} />

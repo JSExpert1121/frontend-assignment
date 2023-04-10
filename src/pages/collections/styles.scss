@@ -6,11 +6,11 @@
     flex-wrap: wrap;
 
     & .collection-card {
-        width: 100%;
+        width: 45%;
         padding: 8px;
         min-width: 560px;
         @include lg {
-            width: 45%;
+            width: 100%;
         }
     }
 
@@ -20,6 +20,13 @@
         flex-wrap: wrap;
         gap: 12px;
         width: fit-content;
+        
+        @include sm {
+            max-width: 320px;
+            margin: auto;
+            justify-content: center;
+            column-gap: 12px;
+        }
     }
 }
 
@@ -31,12 +38,11 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        margin: 16px 0;
 
         & > h3 {
             color: white;
             width: fit-content;
-            margin: 0;
+            margin: 12px 0;
             font-size: 28px;
         }
 
@@ -48,7 +54,6 @@
     }
 
     & .action-bar {
-        margin: 16px 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -56,7 +61,8 @@
 
         & .left-buttons, & .right-buttons {
             display: flex;
-            gap: 12px;
+            margin: 12px 0;
+            column-gap: 12px;
 
             & > button {
                 border-radius: 16px;
