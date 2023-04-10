@@ -1,4 +1,4 @@
-import { AssetType, CollectionType, OwnerType, TokenType } from "./types";
+import { AssetType, CollectionType, OwnerType, TokenType } from 'types';
 
 const owners: OwnerType[] = [
     {

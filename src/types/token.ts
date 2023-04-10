@@ -22,3 +22,20 @@ export type TokenType = {
     },
     owner: OwnerType;
 }
+
+export type TokensResponse = {
+    name: string;
+    description: string;
+    total: number;
+    stats: {
+        tokens: number;
+        owners: number;
+        floorPrice: { current: number },
+        volume: {
+            daily: number;
+            weekly: number;
+            monthly: number;
+        }
+    },
+    tokens: TokenType[];
+}

@@ -1,0 +1,21 @@
+@import "../../../assets/styles/variables";
+
+.switch {
+    display: flex;
+    align-items: center;
+    background-color: $bg-btn-primary-disabled;
+    border-radius: 16px;
+    transition: all;
+
+    & .icon-btn {
+        background-color: $bg-btn-primary;
+
+        &.disabled {
+            background-color: transparent;
+        }
+
+        & > svg {
+            fill: #CCC;
+        }
+    }
+}

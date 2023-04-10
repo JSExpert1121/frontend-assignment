@@ -1,0 +1,29 @@
+@use "../../../assets/styles/styles";
+@import "../../../assets/styles/variables";
+
+.icon-btn {
+    @extend %flex-center;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+
+    &:disabled {
+        cursor: inherit;
+    }
+
+    &.icon-btn-size-sm {
+        width: 28px;
+        height: 28px;
+    }
+
+    &.icon-btn-size-md {
+        width: 36px;
+        height: 36px;
+    }
+
+    &.icon-btn-size-lg {
+        width: 48px;
+        height: 48px;
+    }
+}

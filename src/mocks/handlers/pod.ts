@@ -25,7 +25,7 @@ export const getTokens = rest.get('http://mock-server/collection/test', (req, re
     return res(
         ctx.status(200),
         ctx.json({
-            name: queries.collection || 'All collections',
+            name: 'All collections',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo magna mauris, sed vulputate odio blandit at. Donec eleifend lectus.',
             stats: {
                 tokens: 10000,

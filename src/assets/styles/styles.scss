@@ -1,0 +1,126 @@
+@import "variables";
+@import "responsive";
+
+@font-face {
+    font-family: 'Alliance No.1';
+    src: url('../fonts/Degarism Studio - Alliance No.1 Light.otf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tusker Grotesk';
+    src: url('../fonts/TuskerGrotesk-4500Medium.eot');
+    src: local('Tusker Grotesk 4500 Medium'), local('TuskerGrotesk-4500Medium'),
+        url('../fonts/TuskerGrotesk-4500Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TuskerGrotesk-4500Medium.woff2') format('woff2'),
+        url('../fonts/TuskerGrotesk-4500Medium.woff') format('woff'),
+        url('../fonts/TuskerGrotesk-4500Medium.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin: auto;
+
+    &.container-sm {
+        max-width: 640px;
+        padding: 8px;
+    }
+
+    &.container-md {
+        max-width: 960px;
+        padding: 16px;
+    }
+
+    &.container-lg {
+        max-width: 1200px;
+        padding: 24px;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.flex-center {
+    @extend %flex-center;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@for $i from 1 through 12 {
+    .m-#{$i} {
+        margin: $i * 4px !important;
+    }
+    .ml-#{$i} {
+        margin-left: $i * 4px !important;
+    }
+    .mt-#{$i} {
+        margin-top: $i * 4px !important;
+    }
+    .mb-#{$i} {
+        margin-bottom: $i * 4px !important;
+    }
+    .mr-#{$i} {
+        margin-right: $i * 4px !important;
+    }
+    .mx-#{$i} {
+        margin-left: $i * 4px !important;
+        margin-right: $i * 4px !important;
+    }
+    .my-#{$i} {
+        margin-top: $i * 4px !important;
+        margin-bottom: $i * 4px !important;
+    }
+
+    .p-#{$i} {
+        padding: $i * 4px !important;
+    }
+    .pl-#{$i} {
+        padding-left: $i * 4px !important;
+    }
+    .pt-#{$i} {
+        padding-top: $i * 4px !important;
+    }
+    .pb-#{$i} {
+        padding-bottom: $i * 4px !important;
+    }
+    .pr-#{$i} {
+        padding-right: $i * 4px !important;
+    }
+    .px-#{$i} {
+        padding-left: $i * 4px !important;
+        padding-right: $i * 4px !important;
+    }
+    .py-#{$i} {
+        padding-top: $i * 4px !important;
+        padding-bottom: $i * 4px !important;
+    }
+
+    .w-#{$i} {
+        width: $i * 4px !important;
+    }
+    .h-#{$i} {
+        height: $i * 4px !important;
+    }
+
+    .m-0 {
+        margin: 0;
+    }
+    .p-0 {
+        padding: 0;
+    }
+}

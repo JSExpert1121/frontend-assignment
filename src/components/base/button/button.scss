@@ -1,0 +1,56 @@
+@import "../../../assets/styles/variables";
+
+.btn {
+    cursor: pointer;
+    background-color: $bg-btn-primary;
+    border: none;
+    border-radius: 4px;
+    line-height: 1.6;
+    font-size: 14;
+
+    &.btn-primary {
+        background-color: $bg-btn-primary;
+        color: $color-btn-primary;
+        &:disabled {
+            background-color: $bg-btn-primary-disabled;
+        }
+    }
+
+    &.btn-secondary {
+        background-color: $bg-btn-secondary;
+        color: $color-btn-secondary;
+        &:disabled {
+            background-color: $bg-btn-secondary-disabled;
+        }
+    }
+
+    &.btn-danger {
+        background-color: $bg-btn-danger;
+        color: $color-btn-danger;
+        &:disabled {
+            background-color: $bg-btn-danger-disabled;
+        }
+    }
+
+    &:disabled {
+        cursor: inherit;
+    }
+
+    &.btn-size-sm {
+        padding: 6px 8px;
+        line-height: 1.4;
+        font-size: 12;
+    }
+
+    &.btn-size-md {
+        padding: 8px 12px;
+        line-height: 1.6;
+        font-size: 14;
+    }
+
+    &.btn-size-lg {
+        padding: 12px 24px;
+        line-height: 1.8;
+        font-size: 16;
+    }
+}
