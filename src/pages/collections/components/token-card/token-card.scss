@@ -1,0 +1,99 @@
+@use "../../../../assets/styles/styles.scss";
+
+.token-card {
+    position: relative;
+    width: 288px;
+    background: linear-gradient(
+        12.37deg,
+        #523df1 8.32%,
+        rgba(142, 114, 255, 0.1) 20.63%,
+        rgba(219, 143, 255, 0.1) 41.93%,
+        #fa06ff 55.19%,
+        rgba(219, 143, 255, 0.1) 66.55%,
+        rgba(142, 114, 255, 0.1) 87.38%,
+        #523df1 99.22%
+    );
+    border-radius: 8px;
+    border: none;
+    padding: 2px;
+    margin: 8px 0;
+
+    & .content-box {
+        display: flex;
+        flex-direction: column;
+        padding: 4px;
+        background-color: #090719;
+        border-radius: 8px;
+
+        & .cover {
+            width: 100%;
+            height: 280px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        & .sale {
+            position: absolute;
+            top: 264px;
+            left: 16px;
+            height: 32px;
+            border-radius: 8px;
+            z-index: 100;
+            background: radial-gradient(102.5% 1778.81% at 102.93% 143.75%, #000000 0%, #31b3b3 100%);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        & .content {
+            background: radial-gradient(113.75% 307.5% at 36.25% 32.5%, #1d1b2b 0%, #090719 100%)
+                linear-gradient(270deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            & h6 {
+                max-width: 140px;
+            }
+
+            & p {
+                max-width: 160px;
+                opacity: 0.5;
+            }
+        }
+
+        & .owner {
+            background: radial-gradient(39.62% 142.82% at 67.14% 50.58%, #3a3367 0%, #181629 100%);
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            height: 64px;
+
+            @extend %flex-center;
+
+            & > div {
+                border-radius: 16px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                background: linear-gradient(255.92deg, #ffffff -1.66%, rgba(255, 255, 255, 0) 47.72%);
+                background: rgba(255, 255, 255, 0.1);
+
+                & > div {
+                    line-height: 2;
+                    height: 100%;
+                    border-radius: 16px;
+                    padding: 0 8px;
+                }
+
+                & > div:nth-child(1) {
+                    background: #232131;
+                }
+
+                & > div:nth-child(2) {
+                    color: #1D9BF0;
+                }
+            }
+        }
+    }
+}

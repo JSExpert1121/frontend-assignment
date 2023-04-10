@@ -123,4 +123,4 @@ function randomTokens(limit: number) {
     return tokens;
 }
 
-export const allTokens = randomTokens(200);
+export const allTokens = randomTokens(30);

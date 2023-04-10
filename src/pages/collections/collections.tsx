@@ -1,42 +1,64 @@
-import { useState, KeyboardEvent } from 'react';
-import { useQuery } from 'react-query';
-import { getCollections, getTokens } from 'service';
-import { CollectionType, TokenType } from 'types';
-import { CollectionCard } from './components';
-import { StatCard } from './components/stat-card';
+import { useState, KeyboardEvent, Fragment, useRef, useEffect } from 'react';
+import { useInfiniteQuery } from 'react-query';
+import { getTokens } from 'service';
+import { TokenType, TokensResponse } from 'types';
+import { iconMore } from 'assets/icons';
 import { Typography } from 'components/base/typography';
 import { TextField } from 'components/base/text-field';
-import './styles.scss';
 import { Button } from 'components/base/button';
 import { Switch } from 'components/base/switch';
 import { Icon } from 'components/base/icon';
-import { iconMore } from 'assets/icons';
+import { CollectionCard } from './components';
+import { StatCard } from './components/stat-card';
+import { TokenCard } from './components/token-card';
+import './styles.scss';
+import { Spinner } from 'components/base/spinner';
+import { isElementInViewport } from 'utils';
 
 const MY_ACCOUNT = 'Alwaregg';
 
 export function Collections() {
-    const [collection, setCollection] = useState('');
     const [filter, setFilter] = useState('');
     const [keyword, setKeyword] = useState('');
     const [isDesc, setIsDesc] = useState(false);
     const [sortBy, setSortBy] = useState('date');
     const [owner, setOwner] = useState('');
+    const loaderRef = useRef<HTMLElement>(null);
+
+    const fetchTokens = ({ pageParam = 0 }) => getTokens(
+        owner, keyword, sortBy, isDesc ? 'desc' : 'asc', pageParam
+    );
 
     const {
-        data: collections,
-        error: collectionsError
-    } = useQuery<CollectionType[], any>(['collections'], getCollections);
-
-    const {
-        data: tokens,
-        isLoading: tokensFetching,
+        data: tokensData,
+        isFetching: tokensFetching,
+        hasNextPage,
+        fetchNextPage,
         error: tokensError
-    } = useQuery<TokenType[], any, TokenType[], [string, string, string, boolean, string, string]>({
-        queryKey: ['tokens', collection, keyword, isDesc, sortBy, owner],
-        queryFn: async ({ queryKey: [_, collection, keyword, isDesc, sortBy, owner] }) => getTokens(
-            collection, owner, keyword, sortBy, isDesc ? 'desc' : 'asc'
-        )
+    } = useInfiniteQuery<TokensResponse, any, TokensResponse, [string, string, boolean, string, string]>({
+        queryKey: ['tokens', keyword, isDesc, sortBy, owner],
+        queryFn: fetchTokens,
+        getNextPageParam: (lastPage, pages) => {
+            const total = pages.reduce((prev, cur) => prev + cur.tokens.length, 0);
+            if (total < lastPage.total) return total;
+            else return null;
+        }
     });
+
+    useEffect(() => {
+        const listener = () => {
+            if (!hasNextPage || tokensFetching) return;
+            if (loaderRef.current && isElementInViewport(loaderRef.current)) {
+                fetchNextPage();
+            }
+        }
+
+        window.addEventListener('scroll', listener);
+
+        return () => {
+            window.removeEventListener('scroll', listener);
+        }
+    }, [hasNextPage, fetchNextPage, tokensFetching])
 
     const triggerSort = () => setIsDesc(!isDesc);
 
@@ -59,15 +81,21 @@ export function Collections() {
         setKeyword(keyword);
     }
 
+    const pageCount = tokensData?.pages?.length ?? 0;
+    const lastPage = tokensData?.pages?.[pageCount - 1];
+
     return (
         <section className='container container-lg'>
             <section className='collections-topbar my-4'>
-                <CollectionCard />
+                <CollectionCard
+                    collection={lastPage?.name ?? ''}
+                    description={lastPage?.description ?? ''}
+                />
                 <section className='stats my-4'>
-                    <StatCard label='ASSETS' value={10000} />
-                    <StatCard label='HOLDERS' value={5257} />
-                    <StatCard label='VOLUME' value={98561} />
-                    <StatCard label='FLOOR PRICE' value={0.515} />
+                    <StatCard label='ASSETS' value={lastPage?.stats.tokens?.toLocaleString() ?? '-'} />
+                    <StatCard label='HOLDERS' value={lastPage?.stats.owners?.toLocaleString() ?? '-'} />
+                    <StatCard label='VOLUME' value={lastPage?.stats.volume.daily?.toLocaleString() ?? '-'} />
+                    <StatCard label='FLOOR PRICE' value={lastPage?.stats.floorPrice.current.toLocaleString() ?? '-'} />
                 </section>
             </section>
 
@@ -110,12 +138,29 @@ export function Collections() {
                 </section>
             </section>
 
-            {(!!collectionsError && !!tokensError) && (
+            {!!tokensError && (
                 <section className='error'>
-                    <Typography>{collectionsError}</Typography>
                     <Typography>{tokensError}</Typography>
                 </section>
             )}
+
+            <section className='tokens-cards'>
+                <div className='tokens-container'>
+                    {tokensData?.pages?.map((page: TokensResponse, idx: number) => (
+                        <Fragment key={idx}>
+                            {page.tokens.map((token: TokenType) => (
+                                <TokenCard key={idx} data={token} />
+                            ))}
+                        </Fragment>
+                    ))}
+                </div>
+            </section>
+
+            <section className='flex-center my-2' ref={loaderRef}>
+                {tokensFetching && (
+                    <Spinner />
+                )}
+            </section>
         </section>
     );
 }
