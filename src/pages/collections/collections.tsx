@@ -2,7 +2,7 @@ import { useState, KeyboardEvent, Fragment, useRef, useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { getTokens } from 'service';
 import { TokenType, TokensResponse } from 'types';
-import { iconMore } from 'assets/icons';
+import { iconCrypto, iconMore } from 'assets/icons';
 import { Typography } from 'components/base/typography';
 import { TextField } from 'components/base/text-field';
 import { Button } from 'components/base/button';
@@ -95,7 +95,11 @@ export function Collections() {
                     <StatCard label='ASSETS' value={lastPage?.stats.tokens?.toLocaleString() ?? '-'} />
                     <StatCard label='HOLDERS' value={lastPage?.stats.owners?.toLocaleString() ?? '-'} />
                     <StatCard label='VOLUME' value={lastPage?.stats.volume.daily?.toLocaleString() ?? '-'} />
-                    <StatCard label='FLOOR PRICE' value={lastPage?.stats.floorPrice.current.toLocaleString() ?? '-'} />
+                    <StatCard
+                        label='FLOOR PRICE'
+                        value={lastPage?.stats.floorPrice.current.toLocaleString() ?? '-'}
+                        icon={<Icon content={iconCrypto} viewBoxWidth={29} viewBoxHeight={30} size='lg' />}
+                    />
                 </section>
             </section>
 
