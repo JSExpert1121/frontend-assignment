@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, KeyboardEvent } from 'react';
 import { useQuery } from 'react-query';
-import { getCollections } from 'service';
-import { CollectionType } from 'types';
+import { getCollections, getTokens } from 'service';
+import { CollectionType, TokenType } from 'types';
 import { CollectionCard } from './components';
 import { StatCard } from './components/stat-card';
 import { Typography } from 'components/base/typography';
@@ -15,16 +15,28 @@ import { iconMore } from 'assets/icons';
 const MY_ACCOUNT = 'Alwaregg';
 
 export function Collections() {
+    const [collection, setCollection] = useState('');
     const [filter, setFilter] = useState('');
+    const [keyword, setKeyword] = useState('');
     const [isDesc, setIsDesc] = useState(false);
     const [sortBy, setSortBy] = useState('date');
     const [owner, setOwner] = useState('');
 
     const {
         data: collections,
-        isLoading: collectionsFetching,
         error: collectionsError
-    } = useQuery<CollectionType[], any>(['collections', filter], getCollections);
+    } = useQuery<CollectionType[], any>(['collections'], getCollections);
+
+    const {
+        data: tokens,
+        isLoading: tokensFetching,
+        error: tokensError
+    } = useQuery<TokenType[], any, TokenType[], [string, string, string, boolean, string, string]>({
+        queryKey: ['tokens', collection, keyword, isDesc, sortBy, owner],
+        queryFn: async ({ queryKey: [_, collection, keyword, isDesc, sortBy, owner] }) => getTokens(
+            collection, owner, keyword, sortBy, isDesc ? 'desc' : 'asc'
+        )
+    });
 
     const triggerSort = () => setIsDesc(!isDesc);
 
@@ -34,7 +46,19 @@ export function Collections() {
     const queryAll = () => setOwner('');
     const queryMine = () => setOwner(MY_ACCOUNT);
 
-    console.log(collections, collectionsFetching, collectionsError);
+    const handleKeyInput = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
+            setKeyword(filter);
+        }
+    };
+
+    const handleKeywordChange = (keyword: string) => {
+        setFilter(keyword);
+        setKeyword(keyword);
+    }
+
     return (
         <section className='container container-lg'>
             <section className='collections-topbar my-4'>
@@ -53,8 +77,9 @@ export function Collections() {
                     <TextField
                         value={filter}
                         onChange={e => setFilter(e.target.value)}
-                        onSearch={setFilter}
+                        onSearch={handleKeywordChange}
                         className='search-input'
+                        onKeyDown={handleKeyInput}
                     />
                 </section>
 
@@ -84,6 +109,13 @@ export function Collections() {
                     </section>
                 </section>
             </section>
+
+            {(!!collectionsError && !!tokensError) && (
+                <section className='error'>
+                    <Typography>{collectionsError}</Typography>
+                    <Typography>{tokensError}</Typography>
+                </section>
+            )}
         </section>
     );
 }

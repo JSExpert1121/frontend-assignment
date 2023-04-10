@@ -6,8 +6,8 @@ export const getTokens = (
     keyword: string,
     orderby: string,
     order: string,
-    start: number,
-    end: number
+    start?: number,
+    end?: number
 ) => {
     return get(
         `${BASE_URL}/collection/test`,

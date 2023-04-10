@@ -4,7 +4,7 @@ export const BASE_URL = 'http://mock-server';
 
 export const get = async (
     url: string,
-    queries: { [key: string]: string | number } = {}
+    queries: { [key: string]: string | number | undefined } = {}
 ) => {
     const query = queryString(queries);
     const res = await fetch(`${url}${query}`);
