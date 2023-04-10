@@ -61,7 +61,7 @@ const TypographyComponent = ((
         <ComponentType
             ref={ref}
             className={clsx([
-                'text-field',
+                'typography',
                 `type-${type}`,
                 { heavy: isHeavy },
                 className

@@ -1,0 +1,55 @@
+.text-field {
+    background: transparent;
+    width: 100%;
+    height: fit-content;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+
+    &:focus {
+        outline: 1px solid #888;
+    }
+
+    &.text-field-size-sm {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+
+    &.text-field-size-md {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+
+    &.text-field-size-lg {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+}
+
+.search-wrapper {
+    position: relative;
+
+    & .text-field {
+        border-radius: 16px;
+        padding-left: 28px;
+    }
+
+    & .icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    & .search-icon {
+        position: absolute;
+        left: 8px;
+        top: 6px;
+        cursor: pointer;
+    }
+
+    & .close-icon {
+        position: absolute;
+        right: 8px;
+        top: 6px;
+        cursor: pointer;
+    }
+}
