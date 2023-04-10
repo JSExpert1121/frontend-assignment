@@ -1,12 +1,11 @@
 @import "variables";
+@import "responsive";
 
 %flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
 
 .container {
     margin: auto;
@@ -29,4 +28,42 @@
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33%;
+    gap: 8px;
+}
+
+@for $i from 1 through 12 {
+    .grid-item-xs-#{$i} {
+        @include xs() {
+            grid-column: auto / span $i;
+        }
+    }
+
+    .grid-item-sm-#{$i} {
+        @include sm() {
+            grid-column: auto / span $i;
+        }
+    }
+
+    .grid-item-md-#{$i} {
+        @include md() {
+            grid-column: auto / span $i;
+        }
+    }
+
+    .grid-item-lg-#{$i} {
+        @include lg() {
+            grid-column: auto / span $i;
+        }
+    }
+
+    .grid-item-xl-#{$i} {
+        @include xl() {
+            grid-column: auto / span $i;
+        }
+    }
 }

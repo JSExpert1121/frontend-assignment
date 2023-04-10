@@ -2,11 +2,11 @@ import { forwardRef } from 'react';
 import { ForwardedRef, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { StyledProps } from 'types';
-import './text-field.scss';
+import './typography.scss';
 
 type AllowedElements = 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-export type TextFieldProps = StyledProps & {
+export type TypographyProps = StyledProps & {
     /**
      * The typography style to use.
      * @default "body-md"
@@ -37,8 +37,8 @@ export type TextFieldProps = StyledProps & {
 
 const DEFAULT_ELEMENT = 'p';
 const DEFAULT_ELEMENT_BY_TYPE: Record<
-    NonNullable<TextFieldProps['type']>,
-    NonNullable<TextFieldProps['as']>
+    NonNullable<TypographyProps['type']>,
+    NonNullable<TypographyProps['as']>
 > = {
     h1: 'h1',
     h2: 'h2',
@@ -51,8 +51,8 @@ const DEFAULT_ELEMENT_BY_TYPE: Record<
     'body-sm': DEFAULT_ELEMENT,
 } as const;
 
-const TextFieldComponent = ((
-    { type = 'body-md', isHeavy = false, as, children, className }: TextFieldProps,
+const TypographyComponent = ((
+    { type = 'body-md', isHeavy = false, as, children, className }: TypographyProps,
     ref: ForwardedRef<any>
 ): ReactElement => {
     const ComponentType = as ?? DEFAULT_ELEMENT_BY_TYPE[type];
@@ -72,9 +72,4 @@ const TextFieldComponent = ((
     );
 });
 
-/**
- * Styled text. Supports specifying the rendered element via the `as` prop.
- */
-const TextField = forwardRef<HTMLElement, TextFieldProps>(TextFieldComponent);
-
-export default TextField;
+export const Typography = forwardRef<HTMLElement, TypographyProps>(TypographyComponent);
