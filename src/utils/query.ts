@@ -12,7 +12,7 @@ export const queryString = (params: { [key: string]: string | number | undefined
 
     // make query string
     if (query.length > 0) {
-        return `?${query.map(({ key, value }) => `${key}=${value}`).join('&')}`;
+        return `?${query.map(({ key, value }) => `${key}=${encodeURIComponent(value)}`).join('&')}`;
     }
 
     return '';

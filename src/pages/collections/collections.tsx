@@ -140,30 +140,33 @@ export function Collections() {
                         </Button>
                     </section>
                 </section>
-            </section>
 
-            {!!tokensError && (
-                <section className='error'>
-                    <Typography>{tokensError}</Typography>
-                </section>
-            )}
-
-            <section className='tokens-cards'>
-                <div className='tokens-container'>
-                    {tokensData?.pages?.map((page: TokensResponse, idx: number) => (
-                        <Fragment key={idx}>
-                            {page.tokens.map((token: TokenType) => (
-                                <TokenCard key={idx} data={token} />
-                            ))}
-                        </Fragment>
-                    ))}
-                </div>
-            </section>
-
-            <section className='flex-center my-2' ref={loaderRef}>
-                {tokensFetching && (
-                    <Spinner />
+                {/* Error if any */}
+                {!!tokensError && (
+                    <section className='error'>
+                        <Typography>{tokensError}</Typography>
+                    </section>
                 )}
+
+                {/* Tokens */}
+                <section className='tokens-cards'>
+                    <div className='tokens-container'>
+                        {tokensData?.pages?.map((page: TokensResponse, idx: number) => (
+                            <Fragment key={idx}>
+                                {page.tokens.map((token: TokenType) => (
+                                    <TokenCard key={idx} data={token} />
+                                ))}
+                            </Fragment>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Spinner */}
+                <section className='flex-center my-2' ref={loaderRef}>
+                    {tokensFetching && (
+                        <Spinner />
+                    )}
+                </section>
             </section>
         </section>
     );

@@ -13,27 +13,20 @@ export type SwitchProps = StyledProps & {
 }
 export const Switch = (
     { className, on, onTrigger, size = 'md', ...others }: SwitchProps
-) => {
-
-    const triggerSwitch = () => {
-        onTrigger();
-    }
-
-    return (
-        <div
-            className={clsx([
-                'switch',
-                className
-            ])}
-            onClick={triggerSwitch}
-            {...others}
-        >
-            <IconButton size={size} className={clsx([{ disabled: on }])}>
-                <Icon content={iconArrowUp} size={size} viewBoxHeight={12} viewBoxWidth={10} />
-            </IconButton>
-            <IconButton size={size}  className={clsx([{ disabled: !on }])}>
-                <Icon content={iconArrowDown} size={size} viewBoxHeight={12} viewBoxWidth={10} />
-            </IconButton>
-        </div>
-    );
-}
+) => (
+    <div
+        className={clsx([
+            'switch',
+            className
+        ])}
+        onClick={onTrigger}
+        {...others}
+    >
+        <IconButton size={size} className={clsx([{ disabled: on }])}>
+            <Icon content={iconArrowUp} size={size} viewBoxHeight={12} viewBoxWidth={10} />
+        </IconButton>
+        <IconButton size={size} className={clsx([{ disabled: !on }])}>
+            <Icon content={iconArrowDown} size={size} viewBoxHeight={12} viewBoxWidth={10} />
+        </IconButton>
+    </div>
+);
