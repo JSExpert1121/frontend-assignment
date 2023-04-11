@@ -84,7 +84,7 @@ export function Collections() {
     }
 
     return (
-        <section className='container container-lg'>
+        <section className='container container-xl'>
             <section className='collections-topbar my-4'>
                 <CollectionCard
                     collection={stats?.name ?? ''}

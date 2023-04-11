@@ -37,13 +37,15 @@ export const TextField = ({ label, value, onChange, size = 'md', onSearch, class
                 onClick={() => onSearch(value)}
                 className='search-icon'
             />
-            <Icon
-                viewBoxHeight={20}
-                viewBoxWidth={20}
-                content={iconClose}
-                onClick={() => onSearch('')}
-                className='close-icon'
-            />
+            {!!value && (
+                <Icon
+                    viewBoxHeight={21}
+                    viewBoxWidth={20}
+                    content={iconClose}
+                    onClick={() => onSearch('')}
+                    className='close-icon'
+                />
+            )}
         </div>
     ) : element;
 }

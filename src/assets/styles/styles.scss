@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: 'Alliance No.1';
-    src: url('../fonts/Degarism Studio - Alliance No.1 Light.otf');
+    src: url('../fonts/alliance-no-1-regular.otf');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -43,6 +43,11 @@
 
     &.container-lg {
         max-width: 1200px;
+        padding: 24px;
+    }
+
+    &.container-xl {
+        max-width: 1440px;
         padding: 24px;
     }
 }

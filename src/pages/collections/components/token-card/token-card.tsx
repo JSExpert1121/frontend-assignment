@@ -31,7 +31,12 @@ export const TokenCard = ({ data }: TokenCardProps) => {
                 <section className='owner'>
                     <div>
                         <div className='yat'>{data.owner.yat}</div>
-                        {!!data.owner.twitter && <div className='twitter'>@{data.owner.twitter}</div>}
+                        {!!data.owner.twitter && (
+                            <div className='twitter'>
+                                <span className='mr-1'>@</span>
+                                {data.owner.twitter}
+                            </div>
+                        )}
                     </div>
                 </section>
             </div>

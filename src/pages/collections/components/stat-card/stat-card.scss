@@ -1,19 +1,44 @@
 .stat-card {
     display: flex;
-    height: fit-content;
+    width: 120px;
+    height: 59px;
     flex-direction: column;
     border-radius: 16px;
-    padding: 12px;
-    min-width: 120px;
+    padding: 16px 20px;
     color: white;
-    border: 1px solid white;
     box-shadow: 0px 10.8px 52.8px rgba(82, 61, 241, 0.05);
-    background: radial-gradient(113.75% 307.5% at 36.25% 32.5%, rgba(29, 27, 43, 0.4) 0%, rgba(9, 7, 25, 0.4) 100%);
+    font-family: "Alliance No.1";
+    position: relative;
+    background-image: linear-gradient(
+        290.96deg,
+        rgba(255, 255, 255, 0.4) 0.58%,
+        rgba(255, 255, 255, 0.08) 14.03%,
+        rgba(255, 255, 255, 0.08) 46.93%,
+        rgba(255, 255, 255, 0.24) 55.41%,
+        rgba(255, 255, 255, 0.08) 65.88%,
+        rgba(255, 255, 255, 0.08) 85.82%,
+        rgba(255, 255, 255, 0.4) 96.28%
+    );
+    background-repeat: unset;
+
+    & > * {
+        position: relative;
+    }
+
+    &::before {
+        background-color: #090719;
+        content: " ";
+        position: absolute;
+        border-radius: 16px;
+        inset: 1px;
+    }
 
     & .label {
-        margin: 4px;
-        line-height: 1;
-        font-family: 'Tusker Grotesk';
+        font-size: 14px;
+        line-height: 16px;
+        margin: 0;
+        font-family: "Tusker Grotesk";
+        font-weight: 400;
     }
 
     & .value {
@@ -21,9 +46,14 @@
         align-items: center;
 
         & > * {
-            margin: 4px;
-            line-height: 1;
-            text-shadow: 0px 0px 19.2px rgba(255, 255, 255, 0.75), 0px 0px 19.2px #523DF1;
+            margin: 0;
+            text-shadow: 0px 0px 19.2px rgba(255, 255, 255, 0.8), 0px 0px 19.2px #523df1;
+            letter-spacing: -1.5px;
+        }
+
+        & > h3 {
+            font-size: 35px !important;
+            line-height: 44px !important;
         }
     }
 }
