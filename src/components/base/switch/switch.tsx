@@ -22,10 +22,10 @@ export const Switch = (
         onClick={onTrigger}
         {...others}
     >
-        <IconButton size={size} className={clsx([{ disabled: on }])}>
+        <IconButton size={size} className={clsx([{ disabled: !on }])}>
             <Icon content={iconArrowUp} size={size} viewBoxHeight={12} viewBoxWidth={10} />
         </IconButton>
-        <IconButton size={size} className={clsx([{ disabled: !on }])}>
+        <IconButton size={size} className={clsx([{ disabled: on }])}>
             <Icon content={iconArrowDown} size={size} viewBoxHeight={12} viewBoxWidth={10} />
         </IconButton>
     </div>
