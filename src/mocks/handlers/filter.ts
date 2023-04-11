@@ -10,7 +10,8 @@ function filterByOwner(tokens: TokenType[], owner: string) {
 }
 
 function filterByKeyword(tokens: TokenType[], keyword: string) {
-    return tokens.filter((token) => token.collection.name.includes(keyword) || token.owner.twitter?.includes(keyword));
+    const regex = new RegExp(keyword, 'i');
+    return tokens.filter((token) => token.collection.name.match(regex) || token.owner.twitter?.match(regex));
 }
 
 export function filterTokens(tokens: TokenType[], filters: QueryFiltersType) {
