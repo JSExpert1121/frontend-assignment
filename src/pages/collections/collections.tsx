@@ -153,8 +153,8 @@ export function Collections() {
                     <div className='tokens-container'>
                         {tokensData?.pages?.map((page: TokensResponse, idx: number) => (
                             <Fragment key={idx}>
-                                {page.tokens.map((token: TokenType) => (
-                                    <TokenCard key={idx} data={token} />
+                                {page.tokens.map((token: TokenType, tokenIdx: number) => (
+                                    <TokenCard key={tokenIdx} data={token} />
                                 ))}
                             </Fragment>
                         ))}
