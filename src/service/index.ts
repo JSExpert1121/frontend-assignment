@@ -1,2 +1,2 @@
-export * from './collections';
+export * from './stats';
 export * from './tokens';

@@ -1,6 +1,6 @@
 import { useState, KeyboardEvent, Fragment, useRef, useEffect } from 'react';
-import { useInfiniteQuery } from 'react-query';
-import { getTokens } from 'service';
+import { useInfiniteQuery, useQuery } from 'react-query';
+import { getStats, getTokens } from 'service';
 import { TokenType, TokensResponse } from 'types';
 import { iconCrypto, iconMore } from 'assets/icons';
 import { Typography } from 'components/base/typography';
@@ -24,6 +24,8 @@ export function Collections() {
     const [sortBy, setSortBy] = useState('date');
     const [owner, setOwner] = useState('');
     const loaderRef = useRef<HTMLElement>(null);
+
+    const { data: stats } = useQuery('stats', getStats);
 
     const fetchTokens = ({ pageParam = 0 }) => getTokens(
         owner, keyword, sortBy, isDesc ? 'desc' : 'asc', pageParam
@@ -81,23 +83,20 @@ export function Collections() {
         setKeyword(keyword);
     }
 
-    const pageCount = tokensData?.pages?.length ?? 0;
-    const lastPage = tokensData?.pages?.[pageCount - 1];
-
     return (
         <section className='container container-lg'>
             <section className='collections-topbar my-4'>
                 <CollectionCard
-                    collection={lastPage?.name ?? ''}
-                    description={lastPage?.description ?? ''}
+                    collection={stats?.name ?? ''}
+                    description={stats?.description ?? ''}
                 />
                 <section className='stats my-4'>
-                    <StatCard label='ASSETS' value={lastPage?.stats.tokens?.toLocaleString() ?? '-'} />
-                    <StatCard label='HOLDERS' value={lastPage?.stats.owners?.toLocaleString() ?? '-'} />
-                    <StatCard label='VOLUME' value={lastPage?.stats.volume.daily?.toLocaleString() ?? '-'} />
+                    <StatCard label='ASSETS' value={stats?.stats?.tokens?.toLocaleString() ?? '-'} />
+                    <StatCard label='HOLDERS' value={stats?.stats?.owners?.toLocaleString() ?? '-'} />
+                    <StatCard label='VOLUME' value={stats?.stats?.volume?.daily?.toLocaleString() ?? '-'} />
                     <StatCard
                         label='FLOOR PRICE'
-                        value={lastPage?.stats.floorPrice.current.toLocaleString() ?? '-'}
+                        value={stats?.stats?.floorPrice?.current.toLocaleString() ?? '-'}
                         icon={<Icon content={iconCrypto} viewBoxWidth={29} viewBoxHeight={30} size='lg' />}
                     />
                 </section>

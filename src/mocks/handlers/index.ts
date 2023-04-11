@@ -1,5 +1,5 @@
-import { getCollections, getTokens } from './pod';
+import { getStats, getTokens } from './pod';
 
 // Please refer to https://mswjs.io/docs/basics/request-matching for more
 // details on how to create & match mock endpoints
-export const handlers = [getCollections, getTokens];
+export const handlers = [getStats, getTokens];
