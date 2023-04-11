@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { allTokens } from './database';
+import { allTokens, getThumbnail } from './database';
 import { filterTokens, QueryFiltersType } from './filter';
 import { sortTokens, QuerySortersType } from './sorter';
 import { limit, QueryLimiterType } from './limiter';
@@ -12,6 +12,7 @@ export const getStats = rest.get('http://mock-server/stats', (req, res, ctx) => 
         ctx.json({
             name: 'All collections',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo magna mauris, sed vulputate odio blandit at. Donec eleifend lectus.',
+            thumbnail: getThumbnail(),
             stats: {
                 tokens: 10000,
                 owners: 5257,

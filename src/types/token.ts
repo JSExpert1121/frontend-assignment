@@ -23,10 +23,9 @@ export type TokenType = {
     owner: OwnerType;
 }
 
-export type TokensResponse = {
+export type StatsResponse = {
     name: string;
     description: string;
-    total: number;
     stats: {
         tokens: number;
         owners: number;
@@ -37,5 +36,10 @@ export type TokensResponse = {
             monthly: number;
         }
     },
+}
+
+export type TokensResponse = {
+    total: number;
     tokens: TokenType[];
+    thumbnail: string;
 }

@@ -123,4 +123,8 @@ function randomTokens(limit: number) {
     return tokens;
 }
 
+export function getThumbnail(): string {
+    return randomPick(assets);
+}
+
 export const allTokens = randomTokens(200);

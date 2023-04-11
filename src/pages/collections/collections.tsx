@@ -87,6 +87,7 @@ export function Collections() {
         <section className='container container-xl'>
             <section className='collections-topbar my-4'>
                 <CollectionCard
+                    thumbnail={stats?.thumbnail ?? ''}
                     collection={stats?.name ?? ''}
                     description={stats?.description ?? ''}
                 />

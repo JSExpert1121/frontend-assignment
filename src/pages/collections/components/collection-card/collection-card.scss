@@ -5,19 +5,57 @@
     max-width: 100%;
 
     & .cover {
-        width: 96px;
-        height: 96px;
+        width: 115px;
+        height: 115px;
+        border-radius: 6px;
+        flex-shrink: 0;
+        position: relative;
+        background: linear-gradient(
+            12.37deg,
+            #523df1 8.32%,
+            rgba(142, 114, 255, 0.1) 20.63%,
+            rgba(219, 143, 255, 0.1) 41.93%,
+            #fa06ff 55.19%,
+            rgba(219, 143, 255, 0.1) 66.55%,
+            rgba(142, 114, 255, 0.1) 87.38%,
+            #523df1 99.22%
+        );
 
-        @include xs {
+        > * {
+            position: relative;
+        }
+
+        & > img {
+            position: absolute;
+            inset: 4px;
+            border-radius: 4px;
+            width: 107px;
+            height: 107px;
+        }
+
+        &::before {
+            background-color: #090719;
+            content: " ";
+            position: absolute;
+            border-radius: 6px;
+            inset: 1px;
+        }
+
+        @include sm {
             width: 0;
+
+            & > img {
+                width: 0;
+            }
         }
     }
 
     & .content {
-        max-width: 448px;
+        max-width: 480px;
         display: flex;
         flex-direction: column;
         margin-left: 16px;
+        font-family: "Alliance No.1";
         @include xs {
             margin-left: 0;
         }
@@ -25,7 +63,7 @@
         & .title {
             margin: 0;
             margin-bottom: 16px;
-            font-size: 40px;
+            font-size: 48px;
             font-weight: 700;
             line-height: 1;
         }
